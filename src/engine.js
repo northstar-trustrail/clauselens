@@ -65,5 +65,5 @@ export async function verify(text, rc) {
   const again = await receipt(text, r, rc.reviewedAt);
   const { receiptSha256, ...body } = rc;
   const selfHash = await sha256(canon(body));
-  return { docMatches: again.docSha256 === rc.docSha256, receiptMatches: again.receiptSha256 === receiptSha256 && selfHash === receiptSha256, engineMatches: rc.engine === ENGINE_VERSION };
+  return { docMatches: again.docSha256 === rc.docSha256, receiptMatches: selfHash === receiptSha256 && (again.docSha256 !== rc.docSha256 || again.receiptSha256 === receiptSha256), engineMatches: rc.engine === ENGINE_VERSION };
 }
