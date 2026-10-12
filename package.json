@@ -1,0 +1,1 @@
+{ "name": "clauselens", "version": "1.0.0", "type": "module", "license": "MIT", "description": "Private, in-browser contract clause risk checker with verifiable review receipts", "scripts": { "test": "node --test test/*.test.js" } }

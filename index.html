@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClauseLens: private contract risk checker</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:">
+<style>
+:root{--bg:#0d1117;--p:#161b22;--b:#30363d;--t:#e6edf3;--m:#8b949e;--h:#f85149;--md:#d29922;--l:#58a6ff;--ok:#3fb950}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:15px/1.5 system-ui,sans-serif}
+header{padding:16px 24px;border-bottom:1px solid var(--b);display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+header h1{margin:0;font-size:22px}header .m{color:var(--m)}.badge{background:#1f6feb33;color:#79c0ff;border-radius:12px;padding:2px 10px;font-size:12px}
+main{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 24px}@media(max-width:900px){main{grid-template-columns:1fr}}
+.panel{background:var(--p);border:1px solid var(--b);border-radius:8px;padding:14px}
+textarea{width:100%;height:440px;background:#010409;color:var(--t);border:1px solid var(--b);border-radius:6px;padding:10px;font:13px/1.45 ui-monospace,monospace}
+button,select,label.btn{background:#21262d;color:var(--t);border:1px solid var(--b);border-radius:6px;padding:6px 12px;cursor:pointer;font-size:14px}
+button.primary{background:#238636;border-color:#2ea043}.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}
+.score{display:flex;gap:16px;align-items:center}.big{font-size:44px;font-weight:700}
+.f{border-left:4px solid var(--b);padding:8px 12px;margin:10px 0;background:#0d1117;border-radius:4px}
+.f.high{border-color:var(--h)}.f.medium{border-color:var(--md)}.f.low{border-color:var(--l)}
+.sev{font-size:11px;text-transform:uppercase;font-weight:700;padding:1px 6px;border-radius:4px;margin-right:6px}
+.sev.high{background:#f8514933;color:var(--h)}.sev.medium{background:#d2992233;color:var(--md)}.sev.low{background:#58a6ff33;color:var(--l)}
+.ex{color:var(--m);font-size:13px;margin:4px 0}.ex mark{background:#f0b72f44;color:var(--t)}.fix{color:var(--ok);font-size:14px}
+pre.rc{background:#010409;border:1px solid var(--b);padding:10px;border-radius:6px;font-size:12px;white-space:pre-wrap;word-break:break-all}
+.ok{color:var(--ok)}.bad{color:var(--h)}footer{color:var(--m);padding:8px 24px 24px;font-size:13px}a{color:#58a6ff}
+</style></head><body>
+<header><h1>🔎 ClauseLens</h1><span class="m">Contract clause risk checker that runs entirely in your browser</span><span class="badge" id="net">0 third-party requests</span></header>
+<main>
+<section class="panel">
+  <div class="row"><select id="sample"><option value="">Load a sample…</option><option value="saas">SaaS subscription (vendor-friendly)</option><option value="contractor">Contractor agreement (one-sided)</option><option value="fair-nda">Mutual NDA (balanced)</option></select>
+  <label class="btn">Open .txt<input type="file" id="file" accept=".txt,.md,text/plain" hidden></label>
+  <button class="primary" id="go">Analyze</button></div>
+  <textarea id="doc" placeholder="Paste contract text here. It never leaves this tab."></textarea>
+  <h3>Verify a review receipt</h3>
+  <div class="row"><label class="btn">Load receipt .json<input type="file" id="rcfile" accept=".json" hidden></label><span id="vres" class="m"></span></div>
+</section>
+<section class="panel" id="out"><p class="m">Paste or load a contract, then click <b>Analyze</b>. ClauseLens flags risky clauses, explains why each one matters, suggests a redline, and issues a SHA-256 <b>review receipt</b>. Anyone can later re-verify the receipt against the exact document, offline.</p></section>
+</main>
+<footer>ClauseLens provides automated issue-spotting and is not legal advice. MIT licensed · <a href="https://github.com/northstar-trustrail/clauselens">source</a> · <a href="video/clauselens-demo.mp4">demo video</a></footer>
+<script type="module" src="app.js"></script></body></html>
